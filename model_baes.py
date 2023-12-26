@@ -16,13 +16,11 @@ class BaseAdvertising:
     def get_views(self):
         return self._views
 
+    def get_id(self):
+        return self._id
+
     def describe_me(self):
         return "This is the BaseAdvertising class. It is used to store information about ads and advertisers."
 
-    @staticmethod
-    def help():
-        string = ""
-        string += "id - The id of the ad or advertiser.\n"
-        string += "clicks - The number of clicks the ad or advertiser has.\n"
-        string += "views - The number of views the ad or advertiser has.\n"
-        return string
+    def _check_unique_id(self):
+        pass

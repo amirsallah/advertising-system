@@ -3,12 +3,20 @@ from model_baes import BaseAdvertising
 
 
 class Ad(BaseAdvertising):
+    ad_ids = []
+
     def __init__(self, unique_id, title, img_url, link, advertiser):
         super().__init__(unique_id)
         self._title = title
         self._img_url = img_url
         self._link = link
         self._advertiser = advertiser
+        self._check_unique_id()
+        Ad.ad_ids.append(unique_id)
+
+    def _check_unique_id(self):
+        if self._id in Ad.ad_ids:
+            raise ValueError("The identifier is duplicated!!!")
 
     def get_title(self):
         return self._title
@@ -41,15 +49,3 @@ class Ad(BaseAdvertising):
 
     def describe_me(self):
         return "This is the Ad class. It is used to store information about ads."
-
-    @staticmethod
-    def help():
-        string = ""
-        string += "id - The id of the ad.\n"
-        string += "title - The title of the ad.\n"
-        string += "img_url - The image url of the ad.\n"
-        string += "link - The link of the ad.\n"
-        string += "advertiser - The advertiser of the ad.\n"
-        string += "clicks - The number of clicks the ad has.\n"
-        string += "views - The number of views the ad has.\n"
-        return string

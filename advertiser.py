@@ -7,7 +7,13 @@ class Advertiser(BaseAdvertising):
     def __init__(self, unique_id, name):
         super().__init__(unique_id)
         self._name = name
+        self._check_unique_id()
         Advertiser.advertisers.append(self)
+
+    def _check_unique_id(self):
+        for user in Advertiser.advertisers:
+            if self._id == user.get_id():
+                raise ValueError("The identifier is duplicated!!!")
 
     def get_name(self):
         return self._name
